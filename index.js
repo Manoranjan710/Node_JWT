@@ -1,27 +1,21 @@
-import inquirer from "inquirer";
-import qr from "qr-image";
-import fs, { writeFile } from "fs";
+const express = require("express");
+const dotenv = require("dotenv");
+const connectDB = require("./config/db");
+const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
+const authMiddleware = require("./middleware/authMiddleware"); // Import the auth middleware
 
-inquirer
-  .prompt([{ message: "Type in your URL: ", name: "URL" }])
-  .then((answers) => {
-    const url = answers.URL;
 
-    var qr_svg = qr.image(url);
-    qr_svg.pipe(fs.createWriteStream("qr_image.png"));
+dotenv.config();
+connectDB();
 
-    fs.writeFile("URL.txt", url, (err) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("QR code generated successfully!");
-      }
-    });
-  })
-  .catch((error) => {
-    if (error.isTtyError) {
-      // Prompt couldn't be rendered in the current environment
-    } else {
-      // Something else went wrong
-    }
-  });
+const app = express();
+app.use(express.json());
+
+app.use("/auth", authRoutes);
+app.use("/users", authMiddleware, userRoutes); // Add authMiddleware here if you want to protect it
+
+app.get("/", (req, res) => res.send("API is running"));
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

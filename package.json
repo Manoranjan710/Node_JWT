@@ -1,6 +1,31 @@
 {
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
     "inquirer": "^12.3.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.14.1",
     "qr-image": "^3.2.0"
-  }
+  },
+  "name": "node",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000Q\u0000R\u0000_\u0000C\u0000o\u0000d\u0000e\u0000_\u0000G\u0000e\u0000n\u0000e\u0000r\u0000a\u0000t\u0000o\u0000r\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manoranjan710/QR_Code_Generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Manoranjan710/QR_Code_Generator/issues"
+  },
+  "homepage": "https://github.com/Manoranjan710/QR_Code_Generator#readme"
 }
