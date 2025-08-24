@@ -15,14 +15,16 @@ app.use(express.json());
 
 // If you want to restrict it to Vercel or local frontend, use:
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://your-frontend.vercel.app'], // adjust to your frontend
-  credentials: true,
+  origin: ['http://localhost:3000', 'https://auth-page-frontend.vercel.app'], // adjust to your frontend
 }));
+
+// // ✅ Handle preflight requests
+// app.options("*", cors());
 
 app.use("/auth", authRoutes);
 app.use("/users", authMiddleware, userRoutes); // Add authMiddleware here if you want to protect it
 
 app.get("/", (req, res) => res.send("API is running"));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
